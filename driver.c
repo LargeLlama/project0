@@ -14,8 +14,8 @@ int main()
 
 	char song_name[50] = "JAPAN";
 	char song_artist[50] = "Famous Dex";
-	*node0->name = song_name; 
-	*node0->artist = song_artist;
+	*node0->name = *song_name; 
+	*node0->artist = *song_artist;
 	node0->next = node1; 
 
 	*node1->name = "STOOPID";

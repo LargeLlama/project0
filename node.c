@@ -26,8 +26,8 @@ struct node * insert_front(struct node *list, char _name[100], char _artist[100]
 {
 	//make a new node, assign it the value given
 	struct node *new_first = malloc(sizeof(struct node));
-	new_first.name = _name;	
-	new_first.artist = _artist;
+	*new_first->name = _name;	
+	*new_first->artist = _artist;
 	//set it's next variable to the list given, since that 
 	//is the first node
 	new_first->next = list;
