@@ -15,7 +15,7 @@ void print_list(struct node *list)
 	{
 		//print the value of the current node, then set the current
 		//node to the next one in the linked list
-		printf("Song: %s\n", current->name);	
+		printf("Song: %s\n", current->song);	
 		printf("Artist: %s\n\n", current->artist);
 		current = current->next;
 	}
@@ -23,17 +23,40 @@ void print_list(struct node *list)
 	printf("====END OF LIST====\n");
 }
 
-struct node * insert_front(struct node *list, char _name[100], char _artist[100])
+struct node * insert_front(struct node *list, char _song[100], char _artist[100])
 {
 	//make a new node, assign it the value given
 	struct node *new_first = malloc(sizeof(struct node));
-	strcpy(new_first->name, _name);	
+	strcpy(new_first->song, _song);	
 	strcpy(new_first->artist, _artist);
 	//set it's next variable to the list given, since that 
 	//is the first node
 	new_first->next = list;
 	//return the new list
 	return new_first;
+}
+
+struct node * insert_order(struct node *list, char _song[100], char _artist[100])
+{
+	struct node *new_node = malloc(sizeof(struct node));
+	strcpy(new_node->song, _song);	
+	strcpy(new_node->artist, _artist);
+
+	while(list)
+	{
+		if (strcmp(list->artist, _artist) < 0)
+		{
+			if (strcmp(list->song, _song) < 0)
+			{
+				struct node *tmp = list->next;
+				list->next = new_node;
+				new_node->next = tmp;
+			}
+		}
+		list = list->next;
+	}
+
+	return list;
 }
 
 struct node *free_list(struct node *list)
@@ -51,11 +74,11 @@ struct node *free_list(struct node *list)
 	return list;
 }
 
-struct node * find_song_artist(struct node *list, char _name[100], char _artist[100])
+struct node * find_song_artist(struct node *list, char _song[100], char _artist[100])
 {
 	while(list)
 	{
-		if (strcmp(list->name, _name) == 0 && strcmp(list->artist, _artist) == 0)
+		if (strcmp(list->song, _song) == 0 && strcmp(list->artist, _artist) == 0)
 		{
 			return list;
 		}

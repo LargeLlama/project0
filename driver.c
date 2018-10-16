@@ -13,19 +13,20 @@ int main()
 	struct node *node1 = malloc(sizeof(struct node));
 	struct node *node2 = malloc(sizeof(struct node));
 
-	strcpy(node0->name, "JAPAN");
+	strcpy(node0->song, "JAPAN");
 	strcpy(node0->artist, "Famous Dex");
 	node0->next = node1; 
 
-	strcpy(node1->name, "STOOPID");
+	strcpy(node1->song, "STOOPID");
 	strcpy(node1->artist, "6ix9ine");
 	node1->next = node2;
 
-	strcpy(node2->name, "Old Money");
+	strcpy(node2->song, "Old Money");
 	strcpy(node2->artist, "Playboi Carti");
 	node2->next = NULL;
 
-	struct node *new_node0 = insert_front(node0, "R.I.P", "Playboi Cart");
+	struct node *new_node0 = insert_front(node0, "R.I.P", "Playboi Carti");
+	struct node *new_new_node0 = insert_order(new_node0, "Old Money", "Playboi Carti");
 
 	print_list(new_node0);
 
@@ -33,7 +34,7 @@ int main()
 	//new_node0 = free_list(new_node0);
 
 	struct node *test_node = find_song_artist(new_node0, "STOOPID", "6ix9ine");
-	printf("FOUND IT\n%s\n%s\n", test_node->name, test_node->artist);
+	printf("FOUND IT\n%s\n%s\n", test_node->song, test_node->artist);
 
 	print_list(new_node0);
 
