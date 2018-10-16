@@ -29,8 +29,11 @@ int main()
 
 	print_list(new_node0);
 
-	printf("\nFreeing the list now!\n");
-	new_node0 = free_list(new_node0);
+	//printf("\nFreeing the list now!\n");
+	//new_node0 = free_list(new_node0);
+
+	struct node *test_node = find_song_artist(new_node0, "STOOPID", "6ix9ine");
+	printf("FOUND IT\n%s\n%s\n", test_node->name, test_node->artist);
 
 	print_list(new_node0);
 

@@ -1,3 +1,4 @@
+#include <string.h>
 #include <stdio.h>
 #include "node.h"
 #include <stdlib.h>
@@ -48,4 +49,18 @@ struct node *free_list(struct node *list)
 	}
 	//return the now-empty list
 	return list;
+}
+
+struct node * find_song_artist(struct node *list, char _name[100], char _artist[100])
+{
+	while(list)
+	{
+		if (strcmp(list->name, _name) == 0 && strcmp(list->artist, _artist) == 0)
+		{
+			return list;
+		}
+		list = list->next;
+	}
+
+	return NULL;
 }
