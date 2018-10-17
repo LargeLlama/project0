@@ -29,9 +29,11 @@ struct node * insert_front(struct node *list, char _song[100], char _artist[100]
 	struct node *new_first = malloc(sizeof(struct node));
 	strcpy(new_first->song, _song);	
 	strcpy(new_first->artist, _artist);
+
 	//set it's next variable to the list given, since that 
 	//is the first node
 	new_first->next = list;
+
 	//return the new list
 	return new_first;
 }
@@ -42,21 +44,21 @@ struct node * insert_order(struct node *list, char _song[100], char _artist[100]
 	strcpy(new_node->song, _song);	
 	strcpy(new_node->artist, _artist);
 
-	while(list)
+	struct node * current = list;
+
+	while( current->next && strcmp(current->artist, _artist) < 0 )
 	{
-		if (strcmp(list->artist, _artist) < 0)
-		{
-			if (strcmp(list->song, _song) < 0)
-			{
-				struct node *tmp = list->next;
-				list->next = new_node;
-				new_node->next = tmp;
-			}
-		}
 		list = list->next;
 	}
 
-	return list;
+	while(current->next && strcmp(current->song, _song) < 0)
+	{
+		list= list->next;	
+	} 
+
+	new_node->next = list->next;
+	current->next = new_node;
+	return new_node;
 }
 
 struct node *free_list(struct node *list)
