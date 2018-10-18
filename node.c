@@ -51,7 +51,6 @@ struct node * insert_order(struct node *list, char _artist[100], char _song[100]
   //loop thru the artists alphabetically
   while( list->next && strcmp(_artist, (list->next)->artist) > 0 )
     {
-      printf("%s, less than %s", _artist, list->artist);
       list = list->next;
       //printf("%s", list->artist); debugging purposes
     }
@@ -64,7 +63,6 @@ struct node * insert_order(struct node *list, char _artist[100], char _song[100]
   //if the node should go in the front, just use our insert_front function
   if( list == front )
     {
-      printf("inserting front: %s, %s\n", _artist, _song );
       front = insert_front(list,_song, _artist);
     }
   else	//otherwise, insert the node by changing what list->next points to
