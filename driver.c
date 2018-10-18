@@ -10,23 +10,20 @@
 int main()
 {
 	struct node * list = malloc(sizeof(struct node));
-	strcpy(list->artist, "z");
-	strcpy(list->song, "z");
-	
-	list = insert_front(list, "c", "c");
-	list = insert_front(list, "b", "b");
-	//	list = insert_front(list, "a", "a");
+	strcpy(list->song, "Old Money");
+	strcpy(list->artist, "Playboi Carti");
+	list->next = NULL;
 
-	list = insert_order(list, "s", "s");
-	list = insert_order(list, "a", "a");
+	list = insert_order(list, "6ix9ine", "STOOPID");
+	list = insert_order(list, "Playboi Carti", "R.I.P");
+	list = insert_order(list, "Famous Dex", "JAPAN");
+	list = insert_order(list, "Playboi Carti", "Magnolia");
+	list = insert_order(list, "6ix9ine", "GUMMO");
 
-	/*
-	insert_order(list, "Old Money", "Playboi Carti");
-	insert_order(list, "A", "A");
-	insert_order(list, "B", "B");
-	*/
+
 	print_list(list);
 
+	printf("looking for first song by Playboi Carti: %s", find_artist(list, "Playboi Carti"));
 	//printf("\nFreeing the list now!\n");
 	//new_node0 = free_list(new_node0);
 
