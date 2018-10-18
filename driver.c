@@ -9,23 +9,35 @@
 
 int main()
 {
-	struct node * list = malloc(sizeof(struct node));
-	strcpy(list->song, "Old Money");
-	strcpy(list->artist, "Playboi Carti");
-	list->next = NULL;
+  struct node * list;
+  
+  list = insert_front(list, "a", "b");
+  print_list(list);
+  list = insert_order(list, "Playboi Carti", "R.I.P");
+  print_list(list);
+  list = insert_order(list, "Playboi Carti", "Magnolia");
+  print_list(list);
+  list = insert_order(list, "Famous Dex", "JAPAN");
+  print_list(list);
+  list = insert_order(list, "sixnine", "STOOPID");
+  print_list(list);
+  list = insert_order(list, "sixnine", "GUMMO");
+  list = insert_order(list, "a", "p");
+  list = insert_order(list, "a", "z");
+  list = insert_order(list, "qq", "l");
+  list = insert_order(list, "nub", "bbbb");
+  list = insert_order(list, "qq", "tt");
+  list = insert_order(list, "nub", "t");
+  list = insert_order(list, "sixnine", "MUMMO");
+  print_list(list);
 
-	list = insert_order(list, "6ix9ine", "STOOPID");
-	list = insert_order(list, "Playboi Carti", "R.I.P");
-	list = insert_order(list, "Famous Dex", "JAPAN");
-	list = insert_order(list, "Playboi Carti", "Magnolia");
-	list = insert_order(list, "6ix9ine", "GUMMO");
+  
+  
+  printf("looking for first song by Playboi Carti: %s", find_artist(list, "Playboi Carti"));
 
-
-	print_list(list);
-
-	printf("looking for first song by Playboi Carti: %s", find_artist(list, "Playboi Carti"));
-	//printf("\nFreeing the list now!\n");
-	//new_node0 = free_list(new_node0);
-
-	return 0;
+  printf("%d, \n", strcmp("6", "P"));
+  //printf("\nFreeing the list now!\n");
+  //new_node0 = free_list(new_node0);
+  
+  return 0;
 }

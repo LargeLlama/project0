@@ -32,45 +32,48 @@ struct node * insert_front(struct node *list, char _song[100], char _artist[100]
 
   //set it's next variable to the list given, since that 
   //is the first node
+ 
   new_first->next = list;
-
+    
   //return the new list
   return new_first;
 }
 
 struct node * insert_order(struct node *list, char _artist[100], char _song[100])
 {
-	//create copy of original front node for later comparison
-	struct node *front = list;
-	//generate new node and occupy it with the necessary values
-	struct node *new_node = malloc(sizeof(struct node));
-	strcpy(new_node->song, _song);	
-	strcpy(new_node->artist, _artist);
+  //create copy of original front node for later comparison
+  struct node *front = list;
+  //generate new node and occupy it with the necessary values
+  struct node *new_node = malloc(sizeof(struct node));
+  strcpy(new_node->song, _song);	
+  strcpy(new_node->artist, _artist);
 
-	//loop thru the artists alphabetically
-	while( list->next && strcmp(_artist, (list->next)->artist) > 0 )
-	{
-	  list = list->next;
-	  //printf("%s", list->artist); debugging purposes
-	}
+  //loop thru the artists alphabetically
+  while( list->next && strcmp(_artist, (list->next)->artist) > 0 )
+    {
+      printf("%s, less than %s", _artist, list->artist);
+      list = list->next;
+      //printf("%s", list->artist); debugging purposes
+    }
 
-	//loop thru the songs alphabetically
-	while( list->next && strcmp(_song, (list->next)->song) > 0 )
-	{
-	  list = list->next;
-	}
-	//if the node should go in the front, just use our insert_front function
-	if( list == front )
-	{
-		front = insert_front(list,_song, _artist);
-	}
-	else	//otherwise, insert the node by changing what list->next points to
-	{
-		new_node->next = list->next;
-		list->next = new_node;
-	}
-	//return the very first node of the list (esentially, returning the list)
-	return front;
+  //loop thru the songs alphabetically
+  while( list->next && strcmp((list->next)->artist, _artist)==0 && strcmp(_song, (list->next)->song) > 0 )
+    {
+      list = list->next;
+    }
+  //if the node should go in the front, just use our insert_front function
+  if( list == front )
+    {
+      printf("inserting front: %s, %s\n", _artist, _song );
+      front = insert_front(list,_song, _artist);
+    }
+  else	//otherwise, insert the node by changing what list->next points to
+    {
+      new_node->next = list->next;
+      list->next = new_node;
+    }
+  //return the very first node of the list (esentially, returning the list)
+  return front;
 }
 
 struct node *free_list(struct node *list)
@@ -104,13 +107,13 @@ struct node * find_song_artist(struct node *list, char _song[100], char _artist[
 
 char * find_artist(struct node *list, char _artist[100])
 {
-	while(list)
+  while(list)
+    {
+      if(!strcmp(list->artist, _artist))
 	{
-		if(!strcmp(list->artist, _artist))
-		{
-			return list->song;
-		}
-		list = list->next;
+	  return list->song;
 	}
-	return NULL;
+      list = list->next;
+    }
+  return NULL;
 }
