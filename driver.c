@@ -19,23 +19,22 @@ int main()
   print_list(list);
   list = insert_order(list, "Famous Dex", "JAPAN");
   print_list(list);
-  list = insert_order(list, "sixnine", "STOOPID");
+  list = insert_order(list, "6ix9ine", "STOOPID");
   print_list(list);
-  list = insert_order(list, "sixnine", "GUMMO");
+  list = insert_order(list, "6ix9ine", "GUMMO");
   list = insert_order(list, "a", "p");
   list = insert_order(list, "a", "z");
   list = insert_order(list, "qq", "l");
   list = insert_order(list, "nub", "bbbb");
   list = insert_order(list, "qq", "tt");
   list = insert_order(list, "nub", "t");
-  list = insert_order(list, "sixnine", "MUMMO");
+  list = insert_order(list, "6ix9ine", "MUMMO");
   print_list(list);
 
   
   
   printf("looking for first song by Playboi Carti: %s", find_artist(list, "Playboi Carti"));
 
-  printf("%d, \n", strcmp("6", "P"));
   //printf("\nFreeing the list now!\n");
   //new_node0 = free_list(new_node0);
   
