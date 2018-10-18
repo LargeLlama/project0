@@ -10,15 +10,21 @@
 int main()
 {
 	struct node * list = malloc(sizeof(struct node));
-	strcpy(list->artist, "a");
-	strcpy(list->song, "a");
+	strcpy(list->artist, "z");
+	strcpy(list->song, "z");
+	
+	list = insert_front(list, "c", "c");
+	list = insert_front(list, "b", "b");
+	//	list = insert_front(list, "a", "a");
 
-	insert_order(list, "JAPAN", "Famous Dex");
-	insert_order(list, "STOOPID", "6ix9ine");
+	list = insert_order(list, "s", "s");
+	list = insert_order(list, "a", "a");
+
+	/*
 	insert_order(list, "Old Money", "Playboi Carti");
 	insert_order(list, "A", "A");
 	insert_order(list, "B", "B");
-	
+	*/
 	print_list(list);
 
 	//printf("\nFreeing the list now!\n");
