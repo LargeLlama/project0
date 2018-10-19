@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "node.h"
 #include <stdlib.h>
+#include <time.h>
 
 void print_list(struct node *list)
 {
@@ -115,3 +116,32 @@ char * find_artist(struct node *list, char _artist[100])
     }
   return NULL;
 }
+
+struct node * find_random(struct node* list){
+  srand(time(NULL));
+  struct node * front = list;
+  int sum = 0;
+  while(front){
+    front = front->next;
+    sum++;
+  }
+  int n=rand()%sum;
+  while(n--){
+    list=list->next;
+  }
+  return list;
+  
+}
+
+void remove_song(struct node* list, struct node* rem){
+  while(list->next){
+    if(list->next==rem){
+      struct node * temp = list->next->next;
+      free(list->next);
+      list->next=temp;
+      return;
+    }
+  }
+    list = list->next;
+}
+  
