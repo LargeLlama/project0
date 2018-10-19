@@ -1,9 +1,9 @@
 #include <string.h>
 #include <stdio.h>
-#include "node.h"
 #include <stdlib.h>
 #include <time.h>
 
+#include "node.h"
 void print_list(struct node *list)
 {
   //creates a variable to store the value of list
@@ -37,34 +37,7 @@ struct node * insert_front(struct node *list, char _artist[100], char _song[100]
   return new_first;
 }
 
-/*
-int song_cmp(char a1[], char s1[], char a2[], char s2[]){
-  if(strcmp(a1, a2) < 0)
-    return 1;
-  else if(strcmp(a1, a2) >0)
-    return -1;
-  else if(strcmp(s1, s2) <0)
-    return -1;
-  else
-    return 1;
-}
 
-struct node * insert_order(struct node *list, char _artist[100], char _song[100]){
-  if(!list || song_cmp(_artist, _song, list->artist, list->song)>0)
-     return insert_front(list, _artist, _song);
-  struct node* front = list;
-  while(!list->next && song_cmp(_artist, _song, (list->next)->artist, (list->next)->song) <0)
-    list = list->next;
-  
-  struct node *new_node = malloc(sizeof(struct node));
-  strcpy(new_node->song, _song);	
-  strcpy(new_node->artist, _artist);
-
-  new_node -> next = list->next;
-  list->next = new_node;
-  return front;
-}
-*/ 
 
 struct node * insert_order(struct node *list, char _artist[100], char _song[100])
 {
