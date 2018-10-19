@@ -6,7 +6,6 @@
 
 void print_list(struct node *list)
 {
-  printf("====START OF LIST====\n");
   //creates a variable to store the value of list
   //so lit itself does not change
   struct node *current = list;
@@ -20,8 +19,6 @@ void print_list(struct node *list)
       printf("Artist: %s\n\n", current->artist);
       current = current->next;
     }
-
-  printf("====END OF LIST====\n");
 }
 
 struct node * insert_front(struct node *list, char _artist[100], char _song[100])
@@ -129,7 +126,7 @@ struct node * find_song_artist(struct node *list, char _artist[100], char _song[
 	}
       list = list->next;
     }
-
+  printf("song not found \n\n");
   return NULL;
 }
 
@@ -178,4 +175,4 @@ struct node* remove_song(struct node* list, struct node* rem){
     list = list->next;
   }
 }
-  
+      
