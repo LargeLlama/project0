@@ -24,7 +24,7 @@ void print_list(struct node *list)
   printf("====END OF LIST====\n");
 }
 
-struct node * insert_front(struct node *list, char _song[100], char _artist[100])
+struct node * insert_front(struct node *list, char _artist[100], char _song[100])
 {
   //make a new node, assign it the value given
   struct node *new_first = malloc(sizeof(struct node));
@@ -39,6 +39,35 @@ struct node * insert_front(struct node *list, char _song[100], char _artist[100]
   //return the new list
   return new_first;
 }
+
+/*
+int song_cmp(char a1[], char s1[], char a2[], char s2[]){
+  if(strcmp(a1, a2) < 0)
+    return 1;
+  else if(strcmp(a1, a2) >0)
+    return -1;
+  else if(strcmp(s1, s2) <0)
+    return -1;
+  else
+    return 1;
+}
+
+struct node * insert_order(struct node *list, char _artist[100], char _song[100]){
+  if(!list || song_cmp(_artist, _song, list->artist, list->song)>0)
+     return insert_front(list, _artist, _song);
+  struct node* front = list;
+  while(!list->next && song_cmp(_artist, _song, (list->next)->artist, (list->next)->song) <0)
+    list = list->next;
+  
+  struct node *new_node = malloc(sizeof(struct node));
+  strcpy(new_node->song, _song);	
+  strcpy(new_node->artist, _artist);
+
+  new_node -> next = list->next;
+  list->next = new_node;
+  return front;
+}
+*/ 
 
 struct node * insert_order(struct node *list, char _artist[100], char _song[100])
 {
@@ -62,9 +91,9 @@ struct node * insert_order(struct node *list, char _artist[100], char _song[100]
       list = list->next;
     }
   //if the node should go in the front, just use our insert_front function
-  if( list == front )
+  if(!list)
     {
-      front = insert_front(list,_song, _artist);
+      front = insert_front(list,_artist, _song);
     }
   else	//otherwise, insert the node by changing what list->next points to
     {
@@ -90,7 +119,7 @@ struct node *free_list(struct node *list)
   return list;
 }
 
-struct node * find_song_artist(struct node *list, char _song[100], char _artist[100])
+struct node * find_song_artist(struct node *list, char _artist[100], char _song[100])
 {
   while(list)
     {
@@ -104,13 +133,13 @@ struct node * find_song_artist(struct node *list, char _song[100], char _artist[
   return NULL;
 }
 
-char * find_artist(struct node *list, char _artist[100])
+struct node * find_artist(struct node *list, char _artist[100])
 {
   while(list)
     {
       if(!strcmp(list->artist, _artist))
 	{
-	  return list->song;
+	  return list;
 	}
       list = list->next;
     }
@@ -118,7 +147,6 @@ char * find_artist(struct node *list, char _artist[100])
 }
 
 struct node * find_random(struct node* list){
-  srand(time(NULL));
   struct node * front = list;
   int sum = 0;
   while(front){
@@ -133,15 +161,21 @@ struct node * find_random(struct node* list){
   
 }
 
-void remove_song(struct node* list, struct node* rem){
+struct node* remove_song(struct node* list, struct node* rem){
+  struct node * front = list;
+  if(list==rem){
+    front = list->next;
+    free(list);
+    return front;
+  }
   while(list->next){
     if(list->next==rem){
       struct node * temp = list->next->next;
       free(list->next);
       list->next=temp;
-      return;
+      return front;
     }
-  }
     list = list->next;
+  }
 }
   
